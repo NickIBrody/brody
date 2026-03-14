@@ -5,6 +5,7 @@ Priority: optional
 Architecture: amd64
 Depends: libc6
 Installed-Size: 80
+Homepage: https://github.com/NickIBrody/brody
 Maintainer: Brody nnov.brody@gmail.com
 Description: Brody programming language interpreter
  Brody is a lightweight scripting language inspired by Python, Lua and Bash.
