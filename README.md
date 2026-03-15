@@ -61,7 +61,7 @@ brody myscript.br
 
 **Steps:**
 ```bash
-git clone https://github.com/yourname/brody-lang.git
+git clone https://github.com/NickIBrody/brody
 cd brody-lang
 make
 ./brody examples/hello.br
