@@ -1,0 +1,16 @@
+shell "echo '=== System Info ==>'"
+shell "echo 'Hostname:' $(hostname)"
+shell "echo 'Date:' $(date)"
+shell "echo 'Uptime:' $(uptime -p)"
+shell "echo ''"
+
+shell "echo '=== Disk Usage =>'"
+shell "df -h /"
+shell "echo ''"
+
+shell "echo '=== Memory =>'"
+shell "free -h"
+shell "echo ''"
+
+shell "echo '=== Top 5 Processes =>'"
+shell "ps aux --sort=-%cpu | head -6"
