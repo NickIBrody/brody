@@ -1,0 +1,58 @@
+# app_config.br
+# Simulates a server startup using Lua-style config and validation functions.
+
+fn default_config() {
+    print("host     = localhost")
+    print("port     = 8080")
+    print("debug    = true")
+    print("version  = 1.0")
+}
+
+fn print_separator() {
+    print("----------------------------")
+}
+
+print("=== App Config ===")
+print_separator()
+
+let host = "localhost"
+let port = 8080
+let debug = true
+let max_connections = 100
+
+print("host            = " + host)
+print("port            = " + str(port))
+print("debug           = " + str(debug))
+print("max_connections = " + str(max_connections))
+
+print_separator()
+
+fn validate_port(p) {
+    if p < 1 { return false }
+    if p > 65535 { return false }
+    return true
+}
+
+fn validate_host(h) {
+    if len(h) == 0 { return false }
+    return true
+}
+
+print("")
+print("=== Validation ===")
+print_separator()
+
+if validate_port(port) {
+    print("port " + str(port) + " — OK")
+} else {
+    print("port " + str(port) + " — INVALID")
+}
+
+if validate_host(host) {
+    print("host '" + host + "' — OK")
+} else {
+    print("host — INVALID")
+}
+
+print_separator()
+print("Config loaded successfully")
