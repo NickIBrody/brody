@@ -1,0 +1,156 @@
+# tictactoe.br
+# Text-based Tic-Tac-Toe with a simple bot.
+
+let b1 = "-"
+let b2 = "-"
+let b3 = "-"
+let b4 = "-"
+let b5 = "-"
+let b6 = "-"
+let b7 = "-"
+let b8 = "-"
+let b9 = "-"
+
+fn print_board() {
+    print("")
+    print(" " + b1 + " | " + b2 + " | " + b3)
+    print("---+---+---")
+    print(" " + b4 + " | " + b5 + " | " + b6)
+    print("---+---+---")
+    print(" " + b7 + " | " + b8 + " | " + b9)
+    print("")
+}
+
+fn check_winner(p) {
+    if b1 == p {
+        if b2 == p { if b3 == p { return true } }
+    }
+    if b4 == p {
+        if b5 == p { if b6 == p { return true } }
+    }
+    if b7 == p {
+        if b8 == p { if b9 == p { return true } }
+    }
+    if b1 == p {
+        if b4 == p { if b7 == p { return true } }
+    }
+    if b2 == p {
+        if b5 == p { if b8 == p { return true } }
+    }
+    if b3 == p {
+        if b6 == p { if b9 == p { return true } }
+    }
+    if b1 == p {
+        if b5 == p { if b9 == p { return true } }
+    }
+    if b3 == p {
+        if b5 == p { if b7 == p { return true } }
+    }
+    return false
+}
+
+fn is_free(pos) {
+    if pos == 1 { if b1 == "-" { return true } }
+    if pos == 2 { if b2 == "-" { return true } }
+    if pos == 3 { if b3 == "-" { return true } }
+    if pos == 4 { if b4 == "-" { return true } }
+    if pos == 5 { if b5 == "-" { return true } }
+    if pos == 6 { if b6 == "-" { return true } }
+    if pos == 7 { if b7 == "-" { return true } }
+    if pos == 8 { if b8 == "-" { return true } }
+    if pos == 9 { if b9 == "-" { return true } }
+    return false
+}
+
+fn place(pos, p) {
+    if pos == 1 { b1 = p }
+    if pos == 2 { b2 = p }
+    if pos == 3 { b3 = p }
+    if pos == 4 { b4 = p }
+    if pos == 5 { b5 = p }
+    if pos == 6 { b6 = p }
+    if pos == 7 { b7 = p }
+    if pos == 8 { b8 = p }
+    if pos == 9 { b9 = p }
+}
+
+fn bot_move() {
+    let i = 1
+    while i <= 9 {
+        if is_free(i) {
+            place(i, "O")
+            return i
+        }
+        i += 1
+    }
+    return 0
+}
+
+fn board_full() {
+    if b1 == "-" { return false }
+    if b2 == "-" { return false }
+    if b3 == "-" { return false }
+    if b4 == "-" { return false }
+    if b5 == "-" { return false }
+    if b6 == "-" { return false }
+    if b7 == "-" { return false }
+    if b8 == "-" { return false }
+    if b9 == "-" { return false }
+    return true
+}
+
+print("=== Tic-Tac-Toe ===")
+print("You are X. Bot is O.")
+print("Positions:")
+print(" 1 | 2 | 3")
+print("---+---+---")
+print(" 4 | 5 | 6")
+print("---+---+---")
+print(" 7 | 8 | 9")
+
+let running = true
+
+while running {
+    print_board()
+
+    let raw = input("Your move (1-9): ")
+    let pos = int(raw)
+
+    if is_free(pos) {
+        place(pos, "X")
+    } else {
+        print("Cell taken! Try again.")
+        continue
+    }
+
+    if check_winner("X") {
+        print_board()
+        print("You win!")
+        running = false
+        continue
+    }
+
+    if board_full() {
+        print_board()
+        print("Draw!")
+        running = false
+        continue
+    }
+
+    let bot = bot_move()
+    print("Bot placed O at " + str(bot))
+
+    if check_winner("O") {
+        print_board()
+        print("Bot wins!")
+        running = false
+        continue
+    }
+
+    if board_full() {
+        print_board()
+        print("Draw!")
+        running = false
+        continue
+    }
+}
