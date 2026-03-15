@@ -1,0 +1,70 @@
+let history = []
+
+fn calculate(a, op, b) {
+    if op == "+" { return a + b }
+    if op == "-" { return a - b }
+    if op == "*" { return a * b }
+    if op == "/" {
+        if b == 0 {
+            print("Error: division by zero")
+            return nil
+        }
+        return a / b
+    }
+    print("Error: unknown operator")
+    return nil
+}
+
+fn show_history() {
+    if len(history) == 0 {
+        print("No calculations yet")
+        return
+    }
+    print("--- History ---")
+    for entry in history {
+        print(entry)
+    }
+    print("---------------")
+}
+
+print("=== Brody Calculator ===")
+print("Operators: + - * /")
+print("Commands:  history, exit")
+print("")
+
+while true {
+    let input_a = input("Enter first number: ")
+
+    if input_a == "exit" { break }
+    if input_a == "history" {
+        show_history()
+        continue
+    }
+
+    let a = float(input_a)
+
+    let op = input("Enter operator (+, -, *, /): ")
+
+    if op == "exit" { break }
+
+    let input_b = input("Enter second number: ")
+
+    if input_b == "exit" { break }
+
+    let b = float(input_b)
+
+    let result = calculate(a, op, b)
+
+    if result != nil {
+        let line = str(a) + " " + op + " " + str(b) + " = " + str(result)
+        print(line)
+        push(history, line)
+    }
+
+    print("")
+}
+
+print("")
+print("=== Session History ===")
+show_history()
+print("Goodbye!")
