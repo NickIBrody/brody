@@ -1,0 +1,24 @@
+# closures.br — without returning functions
+
+fn apply_double(x) {
+    return x * 2
+}
+
+fn apply_triple(x) {
+    return x * 3
+}
+
+fn apply_add10(x) {
+    return x + 10
+}
+
+print("=== Functions as tools ===")
+print(apply_double(5))    # 10
+print(apply_triple(5))    # 15
+print(apply_add10(5))     # 15
+
+print("")
+print("=== In a loop ===")
+for i in range(1, 6) {
+    print(str(i) + " * 2 = " + str(apply_double(i)))
+}
